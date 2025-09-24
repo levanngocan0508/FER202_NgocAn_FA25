@@ -1,6 +1,3 @@
-
-
-
 // sum using rest parameter + reduce; ignore non-numeric and NaN values
 const sum = (...nums) => {
   const valid = nums.filter(n => typeof n === 'number' && !Number.isNaN(n));

@@ -1,4 +1,3 @@
-// ...existing code...
 const companies = [
   { name: "Apple", category: "Technology", start: 1976, end: 2023 },
   { name: "Google", category: "Technology", start: 1998, end: 2023 },
@@ -13,7 +12,11 @@ const companies = [
 
 // Immutable sort by end year (ascending) and take first 3
 const sortedByEndAsc = [...companies].sort((a, b) => a.end - b.end);
-const firstThree = sortedByEndAsc.slice(0, 3);
+companies 
+.filter(c => c.category === 'Technology')
+.sort((a, b) => a.end - b.end)
+.forEach(c => console.log(c.category));
 
+const firstThree = sortedByEndAsc.slice(0, 3);
 
 firstThree.forEach(c => console.log(`${c.name} - ${c.end}`));
