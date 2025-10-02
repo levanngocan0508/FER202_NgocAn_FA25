@@ -1,0 +1,44 @@
+/* ---- Layout để footer dính cuối trang ---- */
+html, body, #root { height: 100%; margin: 0; }
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.app main { flex: 1; }
+
+/* ---- Khung demo grid (giới hạn chiều rộng giống ảnh) ---- */
+/* Khung demo (giới hạn đúng như hình) */
+.grid-frame { max-width: 880px; margin: 2rem auto; }
+
+/* Không cách các hàng */
+.grid-row { margin: 0; }
+
+/* Ô dính nhau, không “gấp đôi” đường viền khi sát nhau */
+.grid-cell {
+  background: #d9d9d9;
+  box-shadow: inset 0 0 0 1px #bfbfbf; /* thay border để không bị double */
+  padding: 12px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+
+/* ---- Footer giống ảnh (nền hồng nhạt + chữ to) ---- */
+.footer {
+  background: #d9cccc;
+  padding: 0.75rem 0 1rem;
+  text-align: center;
+  border-top: 1px solid #e6dede;
+}
+
+.footer-title {
+  margin: 0.25rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Không override màu của Navbar: dùng đúng class Bootstrap:
+   navbar navbar-expand-lg bg-body-tertiary + nav-link/active */

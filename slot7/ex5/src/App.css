@@ -1,0 +1,72 @@
+:root {
+  --fpt-orange: #db872b;
+  --fpt-orange-light: #efac64; /* footer nhạt hơn */
+}
+
+html, body, #root, .app-shell {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+.app-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+/* Header */
+.bg-fpt {
+  background-color: #ebbe8e; /* cam FPT */
+}
+
+/* Logo */
+.header-logo {
+  height: 40px;
+}
+
+
+
+/* Menu */
+.nav-links a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #e87421;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.nav-links a i {
+  font-size: 1rem;
+}
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Search */
+.search-box input {
+  width: 140px;
+}
+.search-box label {
+  color: #000;   /* chữ đen */
+  font-weight: 500;
+}
+
+
+/* Banner */
+.banner-wrap { background: #f6f6f6; }
+.banner-img { display: block; width: 100%; height: auto; }
+
+/* Card ảnh sinh viên đồng nhất tỉ lệ */
+.student-photo {
+  height: 360px;           /* chỉnh nếu muốn cao hơn/thấp hơn */
+  object-fit: cover;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--fpt-orange-light);
+}
+.footer a { color: #fff; }
+.footer a:hover { opacity: .85; }

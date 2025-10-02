@@ -20,6 +20,7 @@ export function Exercise6() {
         // Tạo bảng sao đã sắp xếp theo end tăng dần
         const sortedCompanies = [...companies].sort((a, b) => a.end - b.end);
         // In ra 3 công ty đầu theo định dạng "Company - EndYear" dưới dạng bảng 
+        
     return (
         <div>
             <h1>Exercise 6</h1>
