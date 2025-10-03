@@ -33,7 +33,9 @@ export default function Main() {
                 <p>
                   <del>$40.00</del> <span className="price">$24.00</span>
                 </p>
-                <Button variant="dark">Buy</Button>
+                <Button variant="dark" className="w-100">
+                  Buy
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -44,7 +46,9 @@ export default function Main() {
               <Card.Body>
                 <Card.Title>Mushroom Pizza</Card.Title>
                 <p>$25.00</p>
-                <Button variant="dark">Buy</Button>
+                <Button variant="dark" className="w-100">
+                  Buy
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -56,7 +60,9 @@ export default function Main() {
               <Card.Body>
                 <Card.Title>Hawaiian Pizza</Card.Title>
                 <p>$30.00</p>
-                <Button variant="dark">Buy</Button>
+                <Button variant="dark" className="w-100">
+                  Buy
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -70,7 +76,9 @@ export default function Main() {
                 <p>
                   <del>$50.00</del> <span className="price">$30.00</span>
                 </p>
-                <Button variant="dark">Buy</Button>
+                <Button variant="dark" className="w-100">
+                  Buy
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -103,7 +111,9 @@ export default function Main() {
               placeholder="Please write your comment"
             />
           </Form.Group>
-          <Button variant="warning">Send Message</Button>
+          <div className="d-flex justify-content-start">
+            <Button variant="warning">Send Message</Button>
+          </div>
         </Form>
       </Container>
     </div>

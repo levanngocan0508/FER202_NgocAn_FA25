@@ -1,3 +1,79 @@
+/* Logo + Home cùng style trắng đậm */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Các link menu */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  align-items: center;
+}
+
+/* link bình thường */
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Home active = đậm trắng, không vàng */
+.nav-links a.active {
+  font-weight: bold;
+  color: #fff;
+}
+
+/* hover chỉ đổi màu cho link chưa active */
+.nav-links a:not(.active):hover {
+  color: #f0a500;
+}
+
+/* Căn cùng baseline với "Our Menu" */
+.header, 
+.nav-links a, 
+.logo, 
+.search input, 
+.search button {
+  line-height: 1.6rem;
+  display: flex;
+  align-items: center;
+}
+.navbar .btn {
+  padding-top: .35rem;
+  padding-bottom: .35rem;
+  line-height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  padding: 5px 10px;
+  border-radius: 4px 0 0 4px;
+  border: none;
+  outline: none;
+}
+
+.search button {
+  padding: 6px 10px;
+  background: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+.nav-links a.active {
+  font-weight: bold;
+  color: #f0a500;  /* màu vàng nhấn mạnh */
+}
+
 /* RESET nhỏ để ảnh tràn toàn màn */
 html, body { margin: 0; padding: 0; }
 
@@ -39,11 +115,14 @@ body {
 .banner-text h2 {
   margin: 0 0 8px;
   font-size: clamp(28px, 3.2vw, 40px);
+  font-family: 'Playfair Display', serif; /* font sang trọng cho tiêu đề */
+  letter-spacing: 1px;                    /* giãn nhẹ chữ */
 }
 
 .banner-text p {
   margin: 0;
   font-size: clamp(14px, 1.3vw, 18px);
+  font-family: 'Open Sans', sans-serif;   /* font dễ đọc cho mô tả */
 }
 
 /* Menu card */
