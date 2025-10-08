@@ -1,0 +1,69 @@
+/* Khung Carousel vừa khít, cân giữa */
+.home-carousel {
+  max-width: 1280px;    /* khung tổng thể giữ nguyên */
+  margin: 24px auto;
+  padding: 0 12px;
+}
+
+/* Ảnh cao hơn, bo góc nhẹ */
+.hero {
+  height: clamp(350px, 55vh, 520px);  /* tăng chiều cao ảnh */
+  object-fit: cover;
+  border-radius: 18px;
+  filter: brightness(0.97) contrast(1.06);
+  transition: transform 0.4s ease;
+}
+
+.hero:hover {
+  transform: scale(1.01);
+}
+
+/* Caption nhỏ gọn hơn, nằm gọn trong ảnh */
+.cap {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #111;
+  border-radius: 12px;
+  padding: 8px 14px;               /* nhỏ gọn hơn */
+  max-width: min(560px, 75%);      /* thu nhỏ vùng caption */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  font-size: 0.9rem;
+}
+
+.carousel-caption {
+  bottom: 6% !important;           /* căn lại vị trí thấp hơn chút */
+}
+
+/* Tiêu đề và mô tả tinh gọn */
+.ttl {
+  margin: 0 0 4px;
+  font-weight: 600;
+  font-size: 1.15rem;              /* giảm kích thước chữ */
+}
+
+.desc {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: #222;
+}
+
+/* Badge nhỏ hơn một bậc */
+.badge-light-text {
+  color: #053b4a !important;
+  font-size: 0.7rem;
+  padding: 0.3em 0.45em;
+}
+
+/* Nút điều hướng sáng nhẹ */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1) drop-shadow(0 0 2px rgba(0,0,0,.4));
+}
+
+/* Bo góc ảnh khi chuyển cảnh */
+.carousel .carousel-item img {
+  border-radius: 18px;
+}

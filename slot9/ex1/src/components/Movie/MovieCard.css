@@ -1,0 +1,75 @@
+.movie-card {
+  border: 0;
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+  border-radius: 14px;
+}
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.12);
+}
+
+.poster-wrap {
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.poster-img {
+  height: 260px;            /* poster gọn, đồng đều */
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.genre-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  opacity: .95;
+}
+
+.movie-title {
+  margin: 6px 0 4px;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.movie-desc {
+  color: #444;
+  font-size: .92rem;
+  min-height: 2.6em;         /* giữ đều hàng mô tả */
+}
+
+.meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: .25rem .5rem;
+  margin: .35rem 0 .75rem;
+  font-size: .85rem;
+  color: #333;
+}
+.meta { white-space: nowrap; }
+
+.btn-row {
+  display: flex;
+  gap: .5rem;
+  justify-content: space-between;
+}
+
+/* Modal layout */
+.modal-body-flex {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.modal-poster {
+  width: 120px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+}
+.modal-info { font-size: .95rem; }
