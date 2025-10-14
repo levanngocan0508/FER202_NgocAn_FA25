@@ -1,0 +1,106 @@
+/* ===== Ultra Compact cho đúng style "input-group" trong ảnh ===== */
+/* Áp dụng khi wrapper có class .rb-compact (bước 2) */
+
+.rb-compact .card { border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+.rb-compact .card-header{
+  padding:.45rem .8rem; font-weight:600;
+  background: linear-gradient(90deg, rgba(var(--bs-primary-rgb),.06), transparent);
+  border-bottom:1px solid var(--bs-border-color);
+}
+.rb-compact .card-body{ padding:.75rem; }
+
+/* Gutter & khoảng cách ngắn hơn */
+.rb-compact .row.g-4{ --bs-gutter-x:.65rem; --bs-gutter-y:.65rem; }
+.rb-compact .row.g-3{ --bs-gutter-x:.45rem; --bs-gutter-y:.45rem; }
+.rb-compact .mb-3{ margin-bottom:.5rem !important; }
+.rb-compact hr{ margin:.6rem 0; opacity:.5; }
+
+/* Control “dense” (cao ~36px) */
+.rb-compact .form-control,
+.rb-compact .form-select{
+  height:2.25rem; padding:.3rem .55rem; font-size:.92rem; border-radius:10px;
+  line-height:1.2;
+}
+
+/* FloatingLabel nén lại nhưng không vỡ bố cục */
+.rb-compact .form-floating>label{ padding:.25rem .55rem; font-size:.85rem; opacity:.85; }
+.rb-compact .form-floating>.form-control,
+.rb-compact .form-floating>.form-select{
+  height:2.45rem; padding-top:1.05rem; padding-bottom:.3rem;
+}
+
+/* Radio/checkbox & label nhỏ gọn */
+.rb-compact .form-check-input{ width:.95rem; height:.95rem; margin-top:.2rem; }
+.rb-compact .form-check-label, 
+.rb-compact .form-label, 
+.rb-compact .form-text { font-size:.9rem; }
+
+/* Nhóm số hành khách */
+.rb-compact .input-group .btn{ padding:.22rem .55rem; border-radius:9px; }
+.rb-compact .input-group .form-control{
+  max-width:60px; text-align:center; font-variant-numeric:tabular-nums;
+}
+
+/* Textarea: ép ngắn để tổng chiều cao gọn (không đổi nội dung) */
+.rb-compact textarea.form-control{ height:56px !important; }
+
+/* Tóm tắt bên phải: chữ nhỏ xíu */
+.rb-compact .card .small{ font-size:.88rem; color:var(--bs-secondary-color); }
+
+/* Focus ring tinh tế */
+.rb-compact .form-control:focus, 
+.rb-compact .form-select:focus, 
+.rb-compact .btn:focus{
+  box-shadow:0 0 0 .14rem rgba(var(--bs-primary-rgb),.18);
+  border-color:rgba(var(--bs-primary-rgb),.55);
+}
+
+/* Nén thêm một nấc nếu vẫn dài: thêm .ultra ở wrapper */
+.rb-compact.ultra .card-body{ padding:.6rem; }
+.rb-compact.ultra .row.g-3{ --bs-gutter-x:.4rem; --bs-gutter-y:.4rem; }
+.rb-compact.ultra .form-control, 
+.rb-compact.ultra .form-select{ height:2.1rem; padding:.26rem .5rem; font-size:.9rem; }
+.rb-compact.ultra .form-floating>.form-control,
+.rb-compact.ultra .form-floating>.form-select{ height:2.3rem; padding-top:.95rem; }
+
+/* Dark friendly */
+@media (prefers-color-scheme: dark){
+  .rb-compact .card{ box-shadow:0 8px 24px rgba(0,0,0,.25); }
+}
+/* ===== Center & Narrow wrapper for the whole form ===== */
+.form-shell {
+  /* thu hẹp bề ngang và căn giữa */
+  max-width: 980px;         /* bạn có thể đổi 880/920/1024 tùy ý */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== ÉP CHIỀU RỘNG NHỎ NHẤT & CĂN GIỮA MÀN HÌNH ===== */
+.screen-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc; /* tùy chọn, có thể bỏ nếu không cần nền */
+}
+
+/* form tổng thể */
+.form-shell {
+  width: 100%;
+  max-width: 700px;   /* ép hẹp lại: 600–750px là hợp lý */
+  margin: 0 auto;
+}
+
+/* khi muốn form nhỏ hơn nữa */
+.form-shell--tiny {
+  max-width: 600px;
+}
+
+/* ẩn phần tóm tắt để chỉ giữ form */
+.form-only .col-lg-4 {
+  display: none !important;
+}
+.form-only .col-lg-8 {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}

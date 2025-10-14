@@ -1,0 +1,33 @@
+/* Lớp overlay chiếm toàn màn hình, dán toast xuống góc phải dưới */
+.app-toaster-overlay{
+  position: fixed !important;
+  inset: 0 !important;                 /* phủ full viewport */
+  display: grid !important;
+  align-items: end !important;         /* dồn xuống đáy */
+  justify-items: end !important;       /* dồn sang phải */
+  padding: 16px !important;            /* cách mép */
+  z-index: 2147483647 !important;      /* trên hết */
+  pointer-events: none !important;     /* không chắn click UI */
+}
+
+.app-toaster-box{
+  pointer-events: auto !important;     /* vẫn bấm Close */
+}
+
+.app-toaster-box .toast{
+  min-width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+  overflow: hidden;
+  border: 0;
+}
+
+.app-toaster-box .toast-header{ color:#fff; }
+
+/* Safe-area cho iOS */
+@supports (padding: max(0px)){
+  .app-toaster-overlay{
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}

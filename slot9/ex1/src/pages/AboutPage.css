@@ -1,0 +1,44 @@
+/* Nền hero giữ như cũ, chỉ thu padding + cỡ chữ */
+.about-hero{
+  background: linear-gradient(135deg, rgba(13,110,253,.08), rgba(32,201,151,.08));
+  border: 1px solid rgba(0,0,0,.06);
+  padding: 1rem 1.25rem !important;                 /* ↓ nhỏ lại */
+}
+@media (min-width: 768px){
+  .about-hero{ padding: 1.5rem 2rem !important; }   /* thay vì p-md-5 */
+}
+
+/* Tiêu đề hero nhỏ gọn hơn */
+.about-hero .display-6{
+  font-size: clamp(1.5rem, 2vw + 1rem, 2rem);       /* ~24–32px */
+  line-height: 1.2;
+  margin-bottom: .25rem;
+}
+/* Đoạn lead ngắn & dễ đọc hơn */
+.about-hero .lead{
+  font-size: clamp(.95rem, .6vw + .8rem, 1.05rem);
+  line-height: 1.55;
+  max-width: 72ch;
+}
+
+/* Heading mục “Bạn nhận được gì” nhỏ + gọn */
+.section-title{
+  font-weight: 600;
+  font-size: 1.25rem;                               /* ↓ */
+  display: inline-flex; align-items: center; gap: .5rem;
+}
+.section-title::after{
+  content: ""; width: 48px; height: 3px;            /* ↓ */
+  border-radius: 999px; background: var(--bs-primary);
+}
+
+/* Card feature gọn: icon & text nhỏ lại nhẹ nhàng */
+.feature-card{ transition: transform .15s ease, box-shadow .15s ease; }
+.feature-card:hover{ transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,.12); }
+.feature-card .fs-4{ font-size: 1.25rem !important; }  /* icon nhỏ hơn */
+.feature-card h6{ font-size: 1rem; margin: 0; }        /* tiêu đề card */
+.feature-card .card-body{ padding: .75rem 1rem; }      /* ↓ padding */
+.feature-card .small{ font-size: .9rem; }              /* nội dung nhẹ hơn */
+
+/* List items trong 2 card dưới cùng gọn hơn */
+.card .list-group-item{ padding: .55rem .75rem; }

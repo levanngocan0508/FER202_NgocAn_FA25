@@ -1,0 +1,51 @@
+/* HomePage.css */
+:root {
+  --hp-accent: #0ea5e9;   /* cyan */
+  --hp-accent-2: #22d3ee; /* lighter cyan */
+}
+
+/* Nền nhẹ, chỉ trong trang Home */
+.homepage {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(14,165,233,.12), transparent 50%),
+    radial-gradient(1000px 500px at 90% -20%, rgba(34,211,238,.10), transparent 45%);
+}
+
+/* Khoảng đệm cho section */
+.homepage-section {
+  padding-block: clamp(12px, 2vw, 24px);
+}
+
+/* Tiêu đề có gạch màu hiện đại */
+.section-title {
+  font-weight: 700;
+  letter-spacing: .2px;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  margin: 0 0 .5rem;
+}
+.section-title::after {
+  content: "";
+  height: 3px; width: 64px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--hp-accent), var(--hp-accent-2));
+  display: inline-block;
+}
+
+/* Fade-in nhẹ cho phần grid */
+.fade-in {
+  animation: hpFade .5s ease-out both;
+}
+@keyframes hpFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Tăng độ thoáng trên màn rất rộng */
+@media (min-width: 1400px) {
+  .homepage .g-4 {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
+  }
+}

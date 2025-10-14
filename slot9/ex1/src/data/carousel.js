@@ -5,7 +5,7 @@ export const carouselMovies = [
     title: 'Avatar',
     description:
       'A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following orders and protecting the world he feels is his home.',
-    poster: '/images/movie1.jpg',
+    poster: '/images/avatar.jpg',
     genre: 'Sci-Fi',
     year: 2009,
     country: 'USA',
@@ -16,7 +16,7 @@ export const carouselMovies = [
     title: 'Avengers: Endgame',
     description:
       'After the devastating events of Avengers: Infinity War, the Avengers assemble once more in order to reverse Thanos’s actions and restore balance to the universe.',
-    poster: '/images/movie2.jpg',
+    poster: '/images/endgame.jpg',
     genre: 'Action',
     year: 2019,
     country: 'USA',
@@ -27,7 +27,7 @@ export const carouselMovies = [
     title: 'Titanic',
     description:
       'A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.',
-    poster: '/images/movie3.jpg',
+    poster: '/images/titanic.jpg',
     genre: 'Romance / Drama',
     year: 1997,
     country: 'USA',

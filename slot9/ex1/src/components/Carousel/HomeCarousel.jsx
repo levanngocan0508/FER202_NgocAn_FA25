@@ -1,5 +1,6 @@
 import React from "react";
-import { Carousel, Badge } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
+import Badge from "react-bootstrap/Badge";
 import { carouselMovies } from "../../data/carousel";
 import "./HomeCarousel.css";
 
@@ -7,7 +8,7 @@ export default function HomeCarousel() {
   if (!Array.isArray(carouselMovies) || carouselMovies.length === 0) return null;
 
   return (
-    <div className="home-carousel">  {/* NEW: khung giới hạn bề rộng */}
+    <div className="home-carousel">
       <Carousel interval={3000} data-bs-theme="dark" fade>
         {carouselMovies.map((m) => (
           <Carousel.Item key={m.id}>
