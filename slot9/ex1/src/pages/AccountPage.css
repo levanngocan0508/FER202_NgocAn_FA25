@@ -1,0 +1,14 @@
+/* Ẩn viền xanh & dấu tick của các field tùy chọn khi còn trống */
+.was-validated .no-valid .form-control:valid:placeholder-shown,
+.was-validated .no-valid .form-select:valid:placeholder-shown {
+  border-color: var(--bs-border-color);
+  background-image: none;
+  box-shadow: none;
+}
+
+/* Trường hợp không có placeholder (phòng hờ) */
+.was-validated .no-valid .form-control:valid[value=""] {
+  border-color: var(--bs-border-color);
+  background-image: none;
+  box-shadow: none;
+}

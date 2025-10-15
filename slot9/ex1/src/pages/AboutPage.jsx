@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./AboutPage.css";
 
@@ -15,8 +14,9 @@ export default function AboutPage() {
       <div className="about-hero p-4 p-md-5 rounded-4 mb-4">
         <h2 className="display-6 fw-semibold mb-2">About CGV</h2>
         <p className="lead mb-0 text-body-secondary">
-          CGV giúp bạn khám phá, lọc và lưu những bộ phim yêu thích một cách nhanh chóng –
-          từ tìm kiếm tức thời, bộ sưu tập nổi bật đến quản lý <em>Favourites</em> gọn gàng.
+          CGV là điểm đến của những bộ phim mới nhất. Tại đây bạn có thể duyệt nhanh phim đang chiếu,
+          sắp chiếu, xem thông tin tóm tắt và lưu vào <em>Danh sách yêu thích</em> để chọn phim dễ dàng
+          mỗi khi tới rạp.
         </p>
       </div>
 
@@ -28,49 +28,52 @@ export default function AboutPage() {
             <Card.Body>
               <div className="d-flex align-items-center mb-2">
                 <i className="bi bi-collection-play fs-4 me-2 text-primary"></i>
-                <h6 className="mb-0">Bộ sưu tập nổi bật</h6>
+                <h6 className="mb-0">Phim nổi bật</h6>
               </div>
               <Card.Text className="text-muted small">
-                Carousel và lưới phim được tuyển chọn, cập nhật liên tục để bạn bắt đầu ngay.
+                Bộ sưu tập phim đang được yêu thích với hình ảnh và mô tả ngắn gọn để bạn chọn nhanh.
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
+
         <Col>
           <Card className="feature-card h-100 shadow-sm">
             <Card.Body>
               <div className="d-flex align-items-center mb-2">
                 <i className="bi bi-search fs-4 me-2 text-primary"></i>
-                <h6 className="mb-0">Tìm kiếm tức thì</h6>
+                <h6 className="mb-0">Tìm phim tức thì</h6>
               </div>
               <Card.Text className="text-muted small">
-                Quick Search trên navbar + bộ lọc theo tiêu đề, năm và thời lượng.
+                Gõ tên phim để tìm nhanh; có bộ lọc theo năm và thời lượng để thu hẹp kết quả.
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
+
         <Col>
           <Card className="feature-card h-100 shadow-sm">
             <Card.Body>
               <div className="d-flex align-items-center mb-2">
                 <i className="bi bi-heart fs-4 me-2 text-primary"></i>
-                <h6 className="mb-0">Favourites</h6>
+                <h6 className="mb-0">Danh sách yêu thích</h6>
               </div>
               <Card.Text className="text-muted small">
-                Thêm/Xoá yêu thích realtime, hiển thị thông báo đẹp và badge đếm trên navbar.
+                Lưu những phim bạn quan tâm; thêm/xoá dễ dàng và theo dõi số lượng ngay trên thanh menu.
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
+
         <Col>
           <Card className="feature-card h-100 shadow-sm">
             <Card.Body>
               <div className="d-flex align-items-center mb-2">
-                <i className="bi bi-shield-check fs-4 me-2 text-primary"></i>
-                <h6 className="mb-0">Trải nghiệm mượt</h6>
+                <i className="bi bi-star fs-4 me-2 text-primary"></i>
+                <h6 className="mb-0">Trải nghiệm xem phim tốt</h6>
               </div>
               <Card.Text className="text-muted small">
-                Giao diện chuẩn React-Bootstrap, responsive 1–2–3 cột, tối ưu khả năng đọc.
+                Thông tin phim rõ ràng, bố cục dễ đọc, phù hợp khi bạn xem nhanh trước khi vào rạp.
               </Card.Text>
             </Card.Body>
           </Card>
@@ -83,31 +86,35 @@ export default function AboutPage() {
             <Card.Header className="bg-white fw-semibold">Giá trị cốt lõi</Card.Header>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <i className="bi bi-speedometer2 me-2 text-primary"></i>Tốc độ &amp; đơn giản
+                <i className="bi bi-speedometer2 me-2 text-primary"></i>Nhanh &amp; thuận tiện
               </ListGroup.Item>
               <ListGroup.Item>
-                <i className="bi bi-ui-radios-grid me-2 text-primary"></i>Thiết kế trực quan
+                <i className="bi bi-ui-radios-grid me-2 text-primary"></i>Thông tin phim minh bạch
               </ListGroup.Item>
               <ListGroup.Item>
-                <i className="bi bi-lock me-2 text-primary"></i>Lưu trữ cục bộ – quyền riêng tư
+                <i className="bi bi-heart-fill me-2 text-primary"></i>Lấy người xem làm trung tâm
               </ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>
+
         <Col md={6}>
           <Card className="shadow-sm h-100">
-            <Card.Header className="bg-white fw-semibold">Công nghệ sử dụng</Card.Header>
-            <Card.Body>
-              <div className="d-flex flex-wrap gap-2">
-                <Badge bg="primary" pill>React</Badge>
-                <Badge bg="secondary" pill>React-Bootstrap</Badge>
-                <Badge bg="dark" pill>Bootstrap Icons</Badge>
-                <Badge bg="info" pill>localStorage</Badge>
-              </div>
-              <p className="small text-muted mb-0 mt-3">
-                Tất cả thành phần giao diện tuân theo tài liệu React-Bootstrap chính thức.
-              </p>
-            </Card.Body>
+            <Card.Header className="bg-white fw-semibold">Dịch vụ &amp; tiện ích tại rạp</Card.Header>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <i className="bi bi-ticket-perforated me-2 text-primary"></i>Đa dạng suất chiếu &amp; thể loại
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <i className="bi bi-cup-straw me-2 text-primary"></i>Combo bắp nước phong phú
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <i className="bi bi-gift me-2 text-primary"></i>Ưu đãi thành viên &amp; chương trình khuyến mại
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <i className="bi bi-film me-2 text-primary"></i>Không gian rạp hiện đại, âm thanh hình ảnh sống động
+              </ListGroup.Item>
+            </ListGroup>
           </Card>
         </Col>
       </Row>

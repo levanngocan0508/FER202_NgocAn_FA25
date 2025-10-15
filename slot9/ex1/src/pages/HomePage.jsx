@@ -1,5 +1,5 @@
 // src/pages/HomePage.jsx
-import React, { useMemo, useState } from "react"; // NEW
+import React, { useMemo, useRef, useEffect } from "react";
 import HomeCarousel from "../components/Carousel/HomeCarousel";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,16 +8,13 @@ import MovieCard from "../components/Movie/MovieCard";
 import { movies } from "../data/movies";
 import "./HomePage.css";
 
-// NEW
-import FilterCard from "../components/Filter/FilterCard";
+export default function HomePage({
+  externalSearch = "",
+  externalYearRange = "all",
+  externalSortBy = "year-asc",
+}) {
+  const gridRef = useRef(null);
 
-export default function HomePage() {
-  // NEW: state cho filter (UI-controlled)
-  const [search, setSearch] = useState("");
-  const [yearRange, setYearRange] = useState("all");
-  const [sortBy, setSortBy] = useState("year-asc");
-
-  // NEW: helpers an toàn dữ liệu
   const num = (x) => {
     const n = parseInt(x, 10);
     return Number.isNaN(n) ? 0 : n;
@@ -31,12 +28,13 @@ export default function HomePage() {
     return 0;
   };
 
-  // NEW: lọc + sắp xếp theo yêu cầu
   const visibleMovies = useMemo(() => {
-    const q = search.trim().toLowerCase();
+    const q = (externalSearch || "").trim().toLowerCase();
+    const yearRange = externalYearRange || "all";
+    const sortBy = externalSortBy || "year-asc";
+
     let list = movies.slice();
 
-    // Search (title + description)
     if (q) {
       list = list.filter((m) => {
         const title = (m.title || "").toLowerCase();
@@ -45,23 +43,20 @@ export default function HomePage() {
       });
     }
 
-    // Year filter
     list = list.filter((m) => {
       const y = num(m.year);
       if (yearRange === "lte-2000") return y <= 2000;
       if (yearRange === "2001-2015") return y >= 2001 && y <= 2015;
       if (yearRange === "gt-2015") return y > 2015;
-      return true; // all
+      return true;
     });
 
-    // Sorting
     list.sort((a, b) => {
       const ya = num(a.year), yb = num(b.year);
       const ta = (a.title || "").toLowerCase();
       const tb = (b.title || "").toLowerCase();
       const da = durationVal(a.duration);
       const db = durationVal(b.duration);
-
       switch (sortBy) {
         case "year-asc":   return ya - yb || ta.localeCompare(tb);
         case "year-desc":  return yb - ya || ta.localeCompare(tb);
@@ -74,27 +69,26 @@ export default function HomePage() {
     });
 
     return list;
-  }, [search, yearRange, sortBy]);
+  }, [externalSearch, externalYearRange, externalSortBy]);
+
+  // Auto scroll tới thẻ đầu tiên khi thay đổi tham số
+  useEffect(() => {
+    if (!gridRef.current || !visibleMovies.length) return;
+    const t = setTimeout(() => {
+      const firstCard = gridRef.current.querySelector(".movie-card");
+      firstCard?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 200);
+    return () => clearTimeout(t);
+  }, [visibleMovies.length, externalSearch, externalYearRange, externalSortBy]);
 
   return (
     <div className="homepage">
       <HomeCarousel />
 
       <Container className="mt-4 homepage-section fade-in">
-        {/* NEW: Filter UI */}
-        <FilterCard
-          search={search}
-          yearRange={yearRange}
-          sortBy={sortBy}
-          onSearchChange={setSearch}
-          onYearRangeChange={setYearRange}
-          onSortChange={setSortBy}
-        />
-
         <h4 className="mb-3 section-title">Featured Movies Collections</h4>
 
-        {/* Grid responsive: xs=1, md=2, lg=3 cột */}
-        <Row xs={1} md={2} lg={3} className="g-4">
+        <Row ref={gridRef} xs={1} md={2} lg={3} className="g-4">
           {visibleMovies.map((m) => (
             <Col key={m.id}>
               <MovieCard movie={m} />
