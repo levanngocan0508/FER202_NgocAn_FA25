@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { Form, Button, Card, Container, Row, Col, Modal, Toast } from 'react-bootstrap';
 
 // Regex helpers
@@ -11,83 +11,91 @@ const isStrongPassword = (v) =>
   /[^A-Za-z0-9]/.test(v) && // có ký tự đặc biệt
   v.length >= 8;            // độ dài
 
+// Validate 1 field
+function validate(field, value, snapshot) {
+  switch (field) {
+    case 'username':
+      if (!value.trim()) return 'Username is required';
+      if (!isUsername(value)) return '≥ 3 chars, letters/numbers/._ only, no spaces';
+      return '';
+    case 'email':
+      if (!value.trim()) return 'Email is required';
+      if (!isEmail(value)) return 'Invalid email format';
+      return '';
+    case 'password':
+      if (!value) return 'Password is required';
+      if (!isStrongPassword(value)) return '≥8 chars, upper, lower, number, special';
+      return '';
+    case 'confirm':
+      if (!value) return 'Please confirm password';
+      if (value !== snapshot.password) return 'Passwords do not match';
+      return '';
+    default:
+      return '';
+  }
+}
+
+// Validate all fields
+function validateAll(snapshot) {
+  const e = {};
+  for (const field of Object.keys(snapshot)) {
+    const msg = validate(field, snapshot[field], snapshot);
+    if (msg) e[field] = msg;
+  }
+  return e;
+}
+
+const initialForm = { username: '', email: '', password: '', confirm: '' };
+
+const initialState = {
+  form: initialForm,
+  errors: validateAll(initialForm),
+  showModal: false,
+  showToast: false,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'CHANGE': {
+      const { name, value } = action;
+      const nextForm = { ...state.form, [name]: value };
+      return { ...state, form: nextForm, errors: validateAll(nextForm) };
+    }
+    case 'SUBMIT': {
+      const newErrors = validateAll(state.form);
+      const ok = Object.keys(newErrors).length === 0;
+      return {
+        ...state,
+        errors: newErrors,
+        showToast: ok,
+        showModal: ok,
+      };
+    }
+    case 'CANCEL':
+      return { ...initialState };
+    case 'CLOSE_TOAST':
+      return { ...state, showToast: false };
+    case 'CLOSE_MODAL':
+      return { ...state, showModal: false };
+    default:
+      return state;
+  }
+}
+
 export default function RegisterForm() {
-  // State cho form
-  const [form, setForm] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirm: '',
-  });
-  const [errors, setErrors] = useState({});
-  const [showModal, setShowModal] = useState(false);
-  const [showToast, setShowToast] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { form, errors, showModal, showToast } = state;
+  const isValid = Object.keys(errors).length === 0;
 
-  // Validate 1 field (dựa trên snapshot để tránh dùng state cũ)
-  const validate = (field, value, snapshot) => {
-    switch (field) {
-      case 'username':
-        if (!value.trim()) return 'Username is required';
-        if (!isUsername(value)) return '≥ 3 chars, letters/numbers/._ only, no spaces';
-        return '';
-      case 'email':
-        if (!value.trim()) return 'Email is required';
-        if (!isEmail(value)) return 'Invalid email format';
-        return '';
-      case 'password':
-        if (!value) return 'Password is required';
-        if (!isStrongPassword(value)) return '≥8 chars, upper, lower, number, special';
-        return '';
-      case 'confirm':
-        if (!value) return 'Please confirm password';
-        if (value !== snapshot.password) return 'Passwords do not match';
-        return '';
-      default:
-        return '';
-    }
-  };
-
-  // Validate toàn bộ (trên snapshot tuỳ thời điểm)
-  const validateAll = (snapshot) => {
-    const e = {};
-    for (const field of Object.keys(snapshot)) {
-      const msg = validate(field, snapshot[field], snapshot);
-      if (msg) e[field] = msg;
-    }
-    return e;
-  };
-
-  // Xử lý thay đổi input
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => {
-      const next = { ...prev, [name]: value };
-      setErrors(validateAll(next)); // luôn đồng bộ lỗi theo dữ liệu mới nhất
-      return next;
-    });
+    dispatch({ type: 'CHANGE', name, value });
   };
-
-  // Form hợp lệ khi không có lỗi
-  const isValid = Object.keys(validateAll(form)).length === 0;
-
-  // Xử lý submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newErrors = validateAll(form);
-    setErrors(newErrors);
-    if (Object.keys(newErrors).length === 0) {
-      setShowToast(true);
-      setShowModal(true);
-    }
+    dispatch({ type: 'SUBMIT' });
   };
-
-  // Reset form
-  const handleCancel = () => {
-    setForm({ username: '', email: '', password: '', confirm: '' });
-    setErrors({});
-    setShowToast(false);
-    setShowModal(false);
-  };
+  const handleCancel = () => dispatch({ type: 'CANCEL' });
 
   return (
     <Container className="mt-5">
@@ -176,7 +184,7 @@ export default function RegisterForm() {
       {/* Toast thông báo submit thành công */}
       <Toast
         show={showToast}
-        onClose={() => setShowToast(false)}
+        onClose={() => dispatch({ type: 'CLOSE_TOAST' })}
         delay={2000}
         autohide
         style={{ position: 'fixed', top: 20, right: 20, minWidth: 220, zIndex: 9999 }}
@@ -188,7 +196,7 @@ export default function RegisterForm() {
       </Toast>
 
       {/* Modal hiển thị thông tin đã submit */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+      <Modal show={showModal} onHide={() => dispatch({ type: 'CLOSE_MODAL' })} centered>
         <Modal.Header closeButton>
           <Modal.Title>Sign Up Info</Modal.Title>
         </Modal.Header>
@@ -197,13 +205,12 @@ export default function RegisterForm() {
             <Card.Body>
               <p><strong>Username:</strong> {form.username}</p>
               <p><strong>Email:</strong> {form.email}</p>
-              {/* Ẩn mật khẩu khi hiển thị cho an toàn */}
               <p><strong>Password:</strong> {'•'.repeat(form.password.length)}</p>
             </Card.Body>
           </Card>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+          <Button variant="secondary" onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
             Close
           </Button>
         </Modal.Footer>

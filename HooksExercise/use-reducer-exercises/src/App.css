@@ -1,0 +1,51 @@
+.exercise-card { border-radius: 12px; }
+.exercise-inner { width: 100%; margin: 0 auto; }
+.exercise-inner.narrow { max-width: 520px; }   /* cho Bài 1 & 2 */
+.exercise-inner.wide   { max-width: 760px; }   /* cho Question Bank */
+
+/* ===== Bóng đèn ===== */
+.light-box { display: flex; justify-content: center; margin: 8px 0 16px; }
+.bulb { width: 88px; height: 88px; transition: filter .3s ease, transform .2s ease; }
+.bulb .glass { fill: #4b5563; transition: fill .25s ease; }
+.bulb .base  { fill: #64748b; }
+.bulb .cap   { fill: #475569; }
+.bulb .ray line {
+  stroke: #facc15; stroke-width: 3; stroke-linecap: round; opacity: 0; transition: opacity .25s ease;
+}
+.bulb.on { filter: drop-shadow(0 0 14px rgba(250, 204, 21, .9)); }
+.bulb.on .glass { fill: #fde047; }           /* vàng sáng khi bật */
+.bulb.on .ray line { opacity: 1; animation: rayPulse 1.6s ease-in-out infinite alternate; }
+
+@keyframes rayPulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* ===== Công tắc ===== */
+.switch-btn {
+  position: relative;
+  width: 70px; height: 38px;
+  padding: 0; border: none;
+  border-radius: 9999px;
+  background: #cbd5e1; /* slate-300 */
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.05);
+  transition: background .25s ease, box-shadow .25s ease, transform .06s ease;
+}
+.switch-btn:active { transform: scale(0.98); }
+.switch-btn:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+
+.switch-btn .knob {
+  position: absolute; top: 5px; left: 5px;
+  width: 28px; height: 28px; border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  transition: transform .25s ease;
+}
+.switch-btn.on { background: #22c55e; }      /* xanh khi bật */
+.switch-btn.on .knob { transform: translateX(32px); }
+
+/* Ẩn văn bản chỉ dành cho trình đọc màn hình */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
