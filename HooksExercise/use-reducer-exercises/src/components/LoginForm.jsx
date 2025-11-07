@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
-import { Form, Button, Card, Container, Row, Col, Modal } from 'react-bootstrap';
+import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
+import AppModal from './AppModal'; // đổi path nếu bạn để ở /common
 
 const initialState = {
   user: { username: '', password: '' },
@@ -66,10 +67,10 @@ function LoginForm() {
         <Col md={6}>
           <Card>
             <Card.Header>
-              <h3 className="text-center">Login Form </h3>
+              <h3 className="text-center m-0">Login Form</h3>
             </Card.Header>
             <Card.Body>
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit} noValidate>
                 <Form.Group controlId="username" className="mb-3">
                   <Form.Label>Username</Form.Label>
                   <Form.Control
@@ -109,19 +110,17 @@ function LoginForm() {
         </Col>
       </Row>
 
-      <Modal show={showModal} onHide={handleCloseModal} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Login Successful</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p className="text-success text-center">Welcome, {user.username}!</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="success" onClick={handleCloseModal}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {/* Modal chuyển sang AppModal (nhúng chung) */}
+      <AppModal
+        show={showModal}
+        onClose={handleCloseModal}
+        title="Login Successful"
+        closeText="Close"
+      >
+        <p className="text-success text-center mb-0">
+          Welcome, <strong>{user.username}</strong>!
+        </p>
+      </AppModal>
     </Container>
   );
 }

@@ -1,15 +1,16 @@
 import React, { useReducer } from 'react';
-import { Form, Button, Card, Container, Row, Col, Modal, Toast } from 'react-bootstrap';
+import { Form, Button, Card, Container, Row, Col, Toast } from 'react-bootstrap';
+import AppModal from './AppModal'; // đổi path nếu bạn để ở /common
 
 // Regex helpers
 const isEmail = (v) => /\S+@\S+\.[A-Za-z]{2,}/.test(v);
 const isUsername = (v) => /^[A-Za-z0-9._]{3,}$/.test(v.trim());
 const isStrongPassword = (v) =>
-  /[A-Z]/.test(v) &&        // có chữ hoa
-  /[a-z]/.test(v) &&        // có chữ thường
-  /\d/.test(v) &&           // có số
-  /[^A-Za-z0-9]/.test(v) && // có ký tự đặc biệt
-  v.length >= 8;            // độ dài
+  /[A-Z]/.test(v) &&
+  /[a-z]/.test(v) &&
+  /\d/.test(v) &&
+  /[^A-Za-z0-9]/.test(v) &&
+  v.length >= 8;
 
 // Validate 1 field
 function validate(field, value, snapshot) {
@@ -181,7 +182,7 @@ export default function RegisterForm() {
         </Col>
       </Row>
 
-      {/* Toast thông báo submit thành công */}
+      {/* Toast giữ nguyên */}
       <Toast
         show={showToast}
         onClose={() => dispatch({ type: 'CLOSE_TOAST' })}
@@ -195,26 +196,21 @@ export default function RegisterForm() {
         <Toast.Body>Submitted successfully!</Toast.Body>
       </Toast>
 
-      {/* Modal hiển thị thông tin đã submit */}
-      <Modal show={showModal} onHide={() => dispatch({ type: 'CLOSE_MODAL' })} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign Up Info</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Card>
-            <Card.Body>
-              <p><strong>Username:</strong> {form.username}</p>
-              <p><strong>Email:</strong> {form.email}</p>
-              <p><strong>Password:</strong> {'•'.repeat(form.password.length)}</p>
-            </Card.Body>
-          </Card>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {/* Modal chuyển sang AppModal (nhúng chung) */}
+      <AppModal
+        show={showModal}
+        onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
+        title="Sign Up Info"
+        closeText="Close"
+      >
+        <Card>
+          <Card.Body>
+            <p><strong>Username:</strong> {form.username}</p>
+            <p><strong>Email:</strong> {form.email}</p>
+            <p><strong>Password:</strong> {'•'.repeat(form.password.length)}</p>
+          </Card.Body>
+        </Card>
+      </AppModal>
     </Container>
   );
 }
